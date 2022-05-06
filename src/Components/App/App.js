@@ -33,6 +33,7 @@ function App(props) {
             playlistName={playlistName} 
             playlistTracks={playlistTracks} 
             onRemove={removeTrack}
+            onNameChange={setPlaylistName}
           />
         </div>
       </div>

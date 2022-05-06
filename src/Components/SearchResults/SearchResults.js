@@ -3,7 +3,7 @@ import './SearchResults.css'
 import TrackList from '../TrackList/TrackList'
 
 const SearchResults = (props) => {
-  let isRemoval = false;
+  const isRemoval = false;
 
   return (
     <div className="SearchResults">

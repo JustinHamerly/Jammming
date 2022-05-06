@@ -9,6 +9,10 @@ function App(props) {
   const [playlistName, setPlaylistName] = useState('');
   const [playlistTracks, setplaylistTracks] = useState([]);
 
+  const search = (searchTerm) => {
+    console.log(searchTerm);
+  }
+
   const addTrack = (track) => {
     if(!playlistTracks.includes(track.id)){
       setplaylistTracks([...playlistTracks, track.id])
@@ -19,11 +23,18 @@ function App(props) {
     setplaylistTracks(playlistTracks.filter(x => x === track.id))
   }
 
+  const savePlaylist = () => {
+    const trackURIs = playlistTracks
+    return trackURIs;
+  }
+
   return (
     <div>
       <h1>Ja<span className="highlight">mmm</span>ing</h1>
       <div className="App">
-        <SearchBar />
+        <SearchBar 
+          search={search}
+        />
         <div className="App-playlist">
           <SearchResults 
             searchResults={searchResults} 
@@ -34,6 +45,7 @@ function App(props) {
             playlistTracks={playlistTracks} 
             onRemove={removeTrack}
             onNameChange={setPlaylistName}
+            onSave={savePlaylist}
           />
         </div>
       </div>

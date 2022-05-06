@@ -1,11 +1,19 @@
 import React from 'react'
 import './Track.css'
 
-const renderAction = (condition) => {
-  return condition ? <button className="Track-action">-</button> : <button className="Track-action">+</button>
-}
-
 const Track = (props) => {
+
+  const renderAction = () => {
+    return props.isRemoval ? <button className="Track-action" onClick={removeTrack}>-</button> : <button className="Track-action" onClick={addTrack} >+</button>
+  }
+
+  const addTrack = () => {
+    props.onAdd(props.track);
+  }
+
+  const removeTrack = () => {
+    props.onRemove(props.track)
+  }
 
   return (
     <div className="Track">
@@ -13,7 +21,7 @@ const Track = (props) => {
         <h3>{props.track.name}</h3>
         <p>{props.track.artist} | {props.track.album}</p>
       </div>
-      <button className="Track-action"> + or - will go here </button>
+      {renderAction}
     </div>
   )
 }

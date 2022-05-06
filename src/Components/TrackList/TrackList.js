@@ -8,7 +8,13 @@ const TrackList = (props) => {
       {
         props.searchResults &&
         props.searchResults.map(track => (
-          <Track key={track.id} track={track} />
+          <Track 
+            key={track.id} 
+            track={track} 
+            onAdd={props.onAdd} 
+            onRemove={props.onRemove}
+            isRemoval={props.isRemoval}
+          />
         ))
       }
     </div>

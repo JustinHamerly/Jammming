@@ -1,8 +1,9 @@
-import './App.css';
-import SearchBar from '../SearchBar/SearchBar'
-import SearchResults from '../SearchResults/SearchResults'
-import Playlist from '../Playlist/Playlist'
 import { useState } from 'react';
+import './App.css';
+import SearchBar from '../SearchBar/SearchBar';
+import SearchResults from '../SearchResults/SearchResults';
+import Playlist from '../Playlist/Playlist';
+import Spotify from '../../util/Spotify';
 
 function App(props) {
   const [searchResults, setSearchResults] = useState([]);
@@ -10,7 +11,9 @@ function App(props) {
   const [playlistTracks, setplaylistTracks] = useState([]);
 
   const search = (searchTerm) => {
-    console.log(searchTerm);
+    Spotify.search(searchTerm).then(searchResults => {
+      setSearchResults(searchResults)
+    })
   }
 
   const addTrack = (track) => {
@@ -24,8 +27,11 @@ function App(props) {
   }
 
   const savePlaylist = () => {
-    const trackURIs = playlistTracks
-    return trackURIs;
+    const trackURIs = playlistTracks.map(track => track.uri);
+    Spotify.savePlaylist(playlistName, trackURIs).then(() => {
+      setPlaylistName('New Playlist')
+      setplaylistTracks([]);
+    })
   }
 
   return (

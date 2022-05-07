@@ -9,7 +9,7 @@ function App(props) {
   const [searchResults, setSearchResults] = useState([]);
   const [playlistName, setPlaylistName] = useState('');
   const [playlistTracks, setplaylistTracks] = useState([]);
-
+  
   const search = (searchTerm) => {
     Spotify.search(searchTerm).then(searchResults => {
       setSearchResults(searchResults)
@@ -17,13 +17,13 @@ function App(props) {
   }
 
   const addTrack = (track) => {
-    if(!playlistTracks.includes(track.id)){
-      setplaylistTracks([...playlistTracks, track.id])
+    if(!playlistTracks.includes(track)){
+      setplaylistTracks([...playlistTracks, track])
     }
   }
 
   const removeTrack = (track) => {
-    setplaylistTracks(playlistTracks.filter(x => x === track.id))
+    setplaylistTracks(playlistTracks.filter(x => x !== track))
   }
 
   const savePlaylist = () => {

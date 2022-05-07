@@ -1,6 +1,6 @@
 let token;
-const clientID = process.env.SPOTIFY_CLIENT_ID;
-const redirectURI = process.env.SPOTIFY_REDIRECT_URI
+const clientID = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
+const redirectURI = process.env.REACT_APP_SPOTIFY_REDIRECT_URI
 
 const Spotify = {
   getAccessToken: () => {
@@ -23,7 +23,7 @@ const Spotify = {
 
   search: (term) => {
     const accessToken = Spotify.getAccessToken();
-    return fetch(`https://api.spotify.com/vi/search?type=track&q=${term}`, 
+    return fetch(`https://api.spotify.com/v1/search?type=track&q=${term}`, 
     {
       headers: {
         Authorization: `Bearer ${accessToken}`
